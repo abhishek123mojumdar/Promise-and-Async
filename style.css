@@ -1,0 +1,37 @@
+h1,
+h2 {
+  font-family: Lato;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-self: flex-end;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: bisque;
+}
+
+.card {
+  background-color: aliceblue;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.card-content {
+  padding-top: 5rem;
+}
+
+p {
+  padding: 0.5rem 0.5rem;
+}
