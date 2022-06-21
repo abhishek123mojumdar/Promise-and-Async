@@ -17,7 +17,7 @@ function myFunction() {
         if (index < 5) {
           html =
             html +
-            `<div class="card">
+            `<div class="card" id="${country.Country}">
         <div class="card-content">
         <h4 style="text-align:center">${country.Country}<h4>
         <hr>
@@ -29,5 +29,8 @@ function myFunction() {
       });
       console.log(html);
       document.getElementById('cardEle').innerHTML = html;
+    })
+    .catch((err) => {
+      console.log('error encountered ', err);
     });
 }
