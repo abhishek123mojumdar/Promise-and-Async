@@ -11,6 +11,8 @@ stars.forEach((star, clickedIndex) => {
     stars.forEach((otherStar, otherIndex) => {
       if (otherIndex <= clickedIndex) {
         otherStar.classList.add('active');
+      } else {
+        otherStar.classList.remove('active');
       }
     });
     console.log('star of index ' + clickedIndex + ' was clicked');
