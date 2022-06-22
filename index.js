@@ -5,6 +5,13 @@ import './style.css';
 const appDiv = document.getElementById('app');
 appDiv.innerHTML = `<h1>Promises and Async</h1>`;
 document.getElementById('btn').addEventListener('click', myFunction);
+var stars = document.querySelectorAll('.stars a');
+console.log(stars);
+stars.forEach((star,index) => {
+  star.addEventListener('click' , () => {
+    console.log('star of index ' +index+ ' was clicked' )
+  })
+})
 
 function myFunction() {
   var html = ``;
