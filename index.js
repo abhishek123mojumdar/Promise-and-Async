@@ -47,6 +47,7 @@ function myFunction() {
       console.log('error encountered ', err);
     });
 }
+// ------------------------Throttling -------------------------//
 
 const loggerFunc = () => {
   console.count('Throttled Function');
@@ -73,3 +74,29 @@ const betterLoggerFunction = throttle(loggerFunc, 2000);
 document
   .getElementById('throttled')
   .addEventListener('input', betterLoggerFunction);
+
+// ---------------------------- debouncing ---------------------------//
+
+const loggerFuncDeb = (counter, val) => {
+  console.count('debounced Function,' + counter + '  ' + val);
+};
+
+const debounce = (fn, limit) => {
+  let timer;
+  let counter = 0;
+  return function (e) {
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      counter++;
+      fn.call(context, counter, e.target.value);
+    }, limit);
+  };
+};
+
+const betterLoggerDebouoncedFunction = debounce(loggerFuncDeb, 200);
+
+document
+  .getElementById('debounced')
+  .addEventListener('keypress', betterLoggerDebouoncedFunction);
