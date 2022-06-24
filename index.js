@@ -32,7 +32,7 @@ function myFunction() {
             html +
             `<div class="card" id="${country.Country}">
         <div class="card-content">
-        <h4 style="text-align:center">${country.Country}<h4>
+        <h5 style="text-align:center">${country.Country}<h5>
         <hr>
         <p> Total confirmed : ${country.TotalConfirmed}</p>
         <p> Total deaths : ${country.TotalDeaths}</p>
