@@ -86,7 +86,6 @@ const debounce = (fn, limit) => {
   let counter = 0;
   return function (e) {
     let context = this;
-    let args = arguments;
     clearTimeout(timer);
     timer = setTimeout(() => {
       counter++;
