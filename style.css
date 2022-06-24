@@ -17,7 +17,7 @@ h2 {
 }
 
 body {
-  background-color: bisque;
+  background-color: rgb(177, 170, 240);
 }
 
 .card {
@@ -59,4 +59,20 @@ p {
 
 .stars a.active {
   opacity: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+input[type='text'] {
+  padding: 1rem;
+  margin: 1rem;
+}
+input[type='text'] {
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.076);
+}
+.rounded-input {
+  padding: 10px;
+  border-radius: 10px;
 }

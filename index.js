@@ -3,7 +3,7 @@ import './style.css';
 
 // Write Javascript code!
 const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>Promises and Async</h1>`;
+appDiv.innerHTML = `<h4>Promises and Async</h4>`;
 document.getElementById('btn').addEventListener('click', myFunction);
 var stars = document.querySelectorAll('.stars a');
 stars.forEach((star, clickedIndex) => {
@@ -47,3 +47,29 @@ function myFunction() {
       console.log('error encountered ', err);
     });
 }
+
+const loggerFunc = () => {
+  console.count('Throttled Function');
+};
+
+const throttle = (fn, limit) => {
+  let flag = true;
+  return function (e) {
+    let context = this;
+    let args = arguments;
+    if (flag) {
+      console.log(e.target.value);
+      fn.apply(context, args);
+      flag = false;
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  };
+};
+
+const betterLoggerFunction = throttle(loggerFunc, 2000);
+
+document
+  .getElementById('throttled')
+  .addEventListener('input', betterLoggerFunction);
