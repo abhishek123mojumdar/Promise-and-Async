@@ -49,31 +49,26 @@ function myFunction() {
 }
 // ------------------------Throttling -------------------------//
 
-const loggerFunc = () => {
-  console.count('Throttled Function');
-};
+var input = document.getElementById('throttled');
+var throttleOnInput = throttle(callApi);
+input.addEventListener('input', throttleOnInput);
 
-const throttle = (fn, limit) => {
-  let flag = true;
+function throttle(callApi) {
+  let throttleFlag = true;
   return function (e) {
-    let context = this;
-    let args = arguments;
-    if (flag) {
-      console.log(e.target.value);
-      fn.apply(context, args);
-      flag = false;
-      setTimeout(() => {
-        flag = true;
-      }, limit);
+    if (throttleFlag) {
+      callApi(e.target.value);
     }
+    throttleFlag = false;
+    setTimeout(() => {
+      throttleFlag = true;
+    }, 2000);
   };
-};
+}
 
-const betterLoggerFunction = throttle(loggerFunc, 2000);
-
-document
-  .getElementById('throttled')
-  .addEventListener('input', betterLoggerFunction);
+function callApi(inputString) {
+  console.log('***** ' + inputString);
+}
 
 // ---------------------------- debouncing ---------------------------//
 
