@@ -73,7 +73,7 @@ function callApi(inputString) {
 // ---------------------------- debouncing ---------------------------//
 
 const loggerFuncDeb = (counter, val) => {
-  console.count('debounced Function,' + counter + '  ' + val);
+  console.log('debounced Function,' + counter + '  ' + val);
 };
 
 const debounce = (fn, limit) => {
