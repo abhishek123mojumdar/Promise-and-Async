@@ -5,19 +5,6 @@ import './style.css';
 const appDiv = document.getElementById('app');
 appDiv.innerHTML = `<h4>Promises and Async</h4>`;
 document.getElementById('btn').addEventListener('click', myFunction);
-var stars = document.querySelectorAll('.stars a');
-stars.forEach((star, clickedIndex) => {
-  star.addEventListener('click', () => {
-    stars.forEach((otherStar, otherIndex) => {
-      if (otherIndex <= clickedIndex) {
-        otherStar.classList.add('active');
-      } else {
-        otherStar.classList.remove('active');
-      }
-    });
-    console.log('star of index ' + clickedIndex + ' was clicked');
-  });
-});
 
 function myFunction() {
   var html = ``;
