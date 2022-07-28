@@ -20,7 +20,7 @@ document.addEventListener('click', (e) => {
   if (e.target.matches('div')) {
     console.log(e.target);
     if (e.target.className === 'userBox') {
-      console.log(e.target.innerHTML);
+      alert(e.target.innerHTML + ' Has been clicked');
     }
   }
 });
