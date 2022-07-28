@@ -18,7 +18,7 @@ let list = [
 
 document.addEventListener('click', (e) => {
   if (e.target.matches('span')) {
-    console.log(e.target);
+    alert(e.target);
   }
 });
 
