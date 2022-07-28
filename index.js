@@ -26,6 +26,9 @@ document.addEventListener('click', (e) => {
 let call = document.getElementById('call');
 let callUsersBtn = document.getElementById('callUsers');
 let promiseAll = document.getElementById('promiseAll');
+let noOfUsers = document.getElementById('noOfUsers');
+let noOfPosts = document.getElementById('noOfPosts');
+let noOfComments = document.getElementById('noOfComments');
 
 let callSetTimeoutPromise = function resolveData() {
   callSetTimeout().then((html) => {
@@ -70,6 +73,8 @@ function callSetTimeout() {
   });
 }
 
+// the below is an implementation of how to use a promise object to call an api
+
 function callUsersUsingPromise() {
   let html = '';
   return new Promise((resolve, reject) => {
@@ -84,18 +89,44 @@ function callUsersUsingPromise() {
   });
 }
 
+// The below is an implementation of promise all , Here in the .all function we pass a list of promises as shown blow , this function returns us a list of all resolved promise , but if any of the promise fails Promise.all fails and goes into the catch condition.  Promise.allSettlled returns us all the promises with proper states even if they are failed
+
 function usePromiseAll() {
   let userPromise = fetch('https://jsonplaceholder.typicode.com/users').then(
     (data) => data.json()
   );
-  let postPromise = fetch('https://jsonplaceholder.typicode.com/posts').then(
-    (data) => data.json()
-  );
+  let postPromise = fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((data) => data.json())
+    .catch((err) => {
+      console.log(err);
+    });
   let commentPromise = fetch(
     'https://jsonplaceholder.typicode.com/comments'
   ).then((data) => data.json());
 
-  Promise.all([userPromise, postPromise, commentPromise]).then((data) => {
-    console.log(data);
+  let customPromise = new Promise((resolve, reject) => {
+    //reject('This Promise is rejected');
+    resolve('This promise is good to go');
   });
+  Promise.all([userPromise, postPromise, commentPromise, customPromise])
+    .then((promiseResp) => {
+      console.log(promiseResp);
+      noOfUsers.innerHTML = `No of Users : ${promiseResp[0].length}`;
+      noOfPosts.innerHTML = `No of Posts : ${promiseResp[1].length}`;
+      noOfComments.innerHTML = `No of commnets : ${promiseResp[2].length}`;
+    })
+    .catch((error) => {
+      console.log('Error Has occured');
+    });
+
+  // Promise.allSettled([userPromise, postPromise, commentPromise, customPromise])
+  //   .then((promiseResp) => {
+  //     console.log(promiseResp);
+  //     noOfUsers.innerHTML = `No of Users : ${promiseResp[0].length}`;
+  //     noOfPosts.innerHTML = `No of Posts : ${promiseResp[1].length}`;
+  //     noOfComments.innerHTML = `No of commnets : ${promiseResp[2].length}`;
+  //   })
+  //   .catch((error) => {
+  //     console.log('Error Has occured');
+  //   });
 }
