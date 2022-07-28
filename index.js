@@ -18,7 +18,8 @@ let list = [
 
 document.addEventListener('click', (e) => {
   if (e.target.matches('span')) {
-    alert(e.target.innerHTML);
+    console.log(e.target.innerHTML);
+    //alert(e.target.innerHTML);
   }
 });
 
@@ -27,7 +28,6 @@ let callUsersBtn = document.getElementById('callUsers');
 
 let callSetTimeoutPromise = function resolveData() {
   callSetTimeout().then((html) => {
-    console.log(html);
     document.querySelector('.showResult').innerHTML = html;
   });
 };
@@ -35,7 +35,6 @@ let callSetTimeoutPromise = function resolveData() {
 let callUsers = function resolveDataUsers() {
   callUsersUsingPromise().then((users) => {
     let html = ``;
-    console.log(users);
     users.forEach((user) => {
       let backgroundColor =
         '#' +
