@@ -17,10 +17,8 @@ let list = [
 ];
 
 document.addEventListener('click', (e) => {
-  if (e.target.matches('div')) {
-    if (e.target.className === 'userBox') {
-      alert(e.target.innerHTML + ' Has been clicked');
-    }
+  if (e.target.matches('span')) {
+    console.log(e.target);
   }
 });
 
@@ -47,7 +45,7 @@ let callUsers = function resolveDataUsers() {
           .toUpperCase();
       html =
         html +
-        `<div class="userBox" style="background-color:${backgroundColor}">${user.name}</div>`;
+        `<div class="userBox" style="background-color:${backgroundColor}"><span>${user.name}</span></div>`;
     });
     document.querySelector('.showResultUsers').innerHTML = html;
   });
