@@ -2,35 +2,87 @@
 import './style.css';
 
 // Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h4>Promises and Async</h4>`;
-document.getElementById('btn').addEventListener('click', myFunction);
 
-function myFunction() {
-  var html = ``;
-  fetch('https://api.covid19api.com/summary')
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      let countries = data.Countries;
-      countries.forEach((country, index) => {
-        if (index < 5) {
-          html =
-            html +
-            `<div class="card" id="${country.Country}">
-        <div class="card-content">
-        <h5 style="text-align:center">${country.Country}<h5>
-        <hr>
-        <p> Total confirmed : ${country.TotalConfirmed}</p>
-        <p> Total deaths : ${country.TotalDeaths}</p>
-        </div>
-        </div>`;
-        }
-      });
-      console.log(html);
-      document.getElementById('cardEle').innerHTML = html;
-    })
-    .catch((err) => {
-      console.log('error encountered ', err);
+let list = [
+  {
+    name: 'Abhishek',
+    age: 29,
+    kpi: 1,
+  },
+  {
+    name: 'Anukriti',
+    age: 27,
+    kpi: 2,
+  },
+];
+
+document.addEventListener('click', (e) => {
+  if (e.target.matches('div')) {
+    console.log(e.target);
+    if (e.target.className === 'userBox') {
+      console.log(e.target.innerHTML);
+    }
+  }
+});
+
+let call = document.getElementById('call');
+let callUsersBtn = document.getElementById('callUsers');
+
+let callSetTimeoutPromise = function resolveData() {
+  callSetTimeout().then((html) => {
+    console.log(html);
+    document.querySelector('.showResult').innerHTML = html;
+  });
+};
+
+let callUsers = function resolveDataUsers() {
+  callUsersUsingPromise().then((users) => {
+    let html = ``;
+    console.log(users);
+    users.forEach((user) => {
+      let backgroundColor =
+        '#' +
+        Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .padStart(6, '0')
+          .toUpperCase();
+      html =
+        html +
+        `<div class="userBox" style="background-color:${backgroundColor}">${user.name}</div>`;
     });
+    document.querySelector('.showResultUsers').innerHTML = html;
+  });
+};
+
+call.addEventListener('click', callSetTimeoutPromise);
+callUsersBtn.addEventListener('click', callUsers);
+
+function callSetTimeout() {
+  let html = '';
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      list.forEach((ele) => {
+        html =
+          html +
+          `<li>Name : ${ele.name} &nbsp; ||  &nbsp; Age : ${ele.age}</li>`;
+      });
+      html = `<ul>${html}</ul>`;
+      resolve(html);
+    }, 1000);
+  });
+}
+
+function callUsersUsingPromise() {
+  let html = '';
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+    xhr.responseType = 'json';
+    xhr.send();
+    // the response is {"message": "Hello, world!"}
+    xhr.onload = function () {
+      let responseObj = xhr.response;
+      resolve(responseObj);
+    };
+  });
 }
