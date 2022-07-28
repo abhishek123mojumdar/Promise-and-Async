@@ -78,7 +78,6 @@ function callUsersUsingPromise() {
     xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
     xhr.responseType = 'json';
     xhr.send();
-    // the response is {"message": "Hello, world!"}
     xhr.onload = function () {
       let responseObj = xhr.response;
       resolve(responseObj);
