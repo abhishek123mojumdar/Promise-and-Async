@@ -19,7 +19,7 @@ let list = [
 document.addEventListener('click', (e) => {
   if (e.target.matches('div')) {
     if (e.target.className === 'userBox') {
-      console.log(e.target.innerHTML + ' Has been clicked');
+      alert(e.target.innerHTML + ' Has been clicked');
     }
   }
 });
