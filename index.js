@@ -69,7 +69,7 @@ function callSetTimeout() {
       });
       html = `<ul>${html}</ul>`;
       resolve(html);
-    }, 1000);
+    }, 4000);
   });
 }
 
@@ -130,3 +130,39 @@ function usePromiseAll() {
   //     console.log('Error Has occured');
   //   });
 }
+
+let para = document.getElementById('para');
+let load = document.getElementById('load');
+let loading = false;
+
+let callLoadPromise = function () {
+  callSetTimeOut()
+    .then((data) => {
+      console.log(data);
+      loading = false;
+      if (!loading) {
+        para.innerHTML = data;
+        para.style.color = 'green';
+      }
+    })
+    .catch((e) => {
+      para.innerHTML = e;
+      para.style.color = 'red';
+    });
+};
+
+function callSetTimeOut() {
+  loading = true;
+  if (loading) {
+    para.innerHTML = 'Loading......';
+    para.style.color = 'red';
+  }
+  return new Promise((res, reject) => {
+    setTimeout(() => {
+      res('Data is loaded');
+      reject('There is some error ! Data can not be loaded');
+    }, 7000);
+  });
+}
+
+load.addEventListener('click', callLoadPromise);
