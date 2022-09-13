@@ -131,6 +131,16 @@ function usePromiseAll() {
   //   });
 }
 
+let fetchBtn = document.getElementById('fetch');
+fetchBtn.addEventListener('click', () => {
+  let userPromise = fetch('https://jsonplaceholder.typicode.com/users').then(
+    (data) => data.json()
+  );
+  userPromise.then((response) => {
+    console.log(response);
+  });
+});
+
 let para = document.getElementById('para');
 let load = document.getElementById('load');
 let loading = false;
