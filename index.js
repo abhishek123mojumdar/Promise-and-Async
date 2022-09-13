@@ -133,9 +133,10 @@ function usePromiseAll() {
 
 let fetchBtn = document.getElementById('fetch');
 fetchBtn.addEventListener('click', () => {
-  let userPromise = fetch('https://jsonplaceholder.typicode.com/users').then(
-    (data) => data.json()
-  );
+  let fetchPromise = fetch('https://jsonplaceholder.typicode.com/users');
+  console.log(fetchPromise);
+  let userPromise = fetchPromise.then((data) => data.json());
+  console.log(userPromise);
   userPromise.then((response) => {
     console.log(response);
   });
